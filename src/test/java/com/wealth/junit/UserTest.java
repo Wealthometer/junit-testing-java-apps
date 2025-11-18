@@ -87,7 +87,7 @@ class UserTest {
     );
 
     @Test
-    void userShouldBeAtLeast18() {
+    void user_should_be_at_least_18() {
         assert user.age() >= 18;
     }
 }
