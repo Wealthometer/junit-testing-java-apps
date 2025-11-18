@@ -75,19 +75,34 @@
 
 package com.wealth.junit;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserTest {
     User user = new User(
-            "Marco",
-            37,
+            "wealth",
+            18,
             false,
             java.time.LocalDate.now()
-                    .minusYears(37)
+                    .minusYears(18 )
     );
 
     @Test
     void user_should_be_at_least_18() {
-        assert user.age() >= 18;
+        assertTrue(user.age() >= 18);
+        assertEquals(user.name(), "wealth");
+    }
+
+    @Test
+    void user_should_not_be_blocked() {
+        Assertions.assertThat(user.age()).isGreaterThanOrEqualTo(18);
+    }
+
+    @Test
+    void user_name_should_start_with_weal() {
+        Assertions.assertThat(user.name()).startsWith("weal");
     }
 }
