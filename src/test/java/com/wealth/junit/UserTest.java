@@ -78,6 +78,7 @@ package com.wealth.junit;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -99,6 +100,8 @@ class UserTest {
     @Test
     void user_should_not_be_blocked() {
         Assertions.assertThat(user.age()).isGreaterThanOrEqualTo(18);
+
+        assertThat(user.blocked()).isFalse();
     }
 
     @Test
