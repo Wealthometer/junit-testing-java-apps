@@ -101,7 +101,9 @@ class UserTest {
     void user_should_not_be_blocked() {
         Assertions.assertThat(user.age()).isGreaterThanOrEqualTo(18);
 
-        assertThat(user.blocked()).isFalse();
+        assertThat(user.blocked())
+            .as("User %s should not be blocked", user.name())
+                .isFalse();
     }
 
     @Test
