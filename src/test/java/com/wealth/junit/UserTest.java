@@ -77,7 +77,7 @@ package com.wealth.junit;
 
 import org.junit.jupiter.api.Test;
 
-public class UserTest {
+class UserTest {
     User user = new User(
             "Marco",
             37,
@@ -87,7 +87,7 @@ public class UserTest {
     );
 
     @Test
-    public void userShoudBeAtLeast18() {
-
+    void userShouldBeAtLeast18() {
+        assert user.age() >= 18;
     }
 }
