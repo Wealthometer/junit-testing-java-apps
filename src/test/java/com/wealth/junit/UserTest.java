@@ -75,8 +75,12 @@
 
 package com.wealth.junit;
 
+//import net.javacrumbs.jsonunit.assertj.JsonAssertions;
+import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -92,9 +96,12 @@ class UserTest {
     );
 
     @Test
+    @DisplayName("User should be at least 18")
     void user_should_be_at_least_18() {
         assertTrue(user.age() >= 18);
         assertEquals(user.name(), "wealth");
+
+//        asserThatJson(user).isEqualTo("{\"name\":\"wealth\",\"age\":18,\"blocked\":false,\"birthDate\":[2006, 6, 24]}");
     }
 
     @Test
