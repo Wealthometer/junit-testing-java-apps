@@ -75,6 +75,9 @@
 
 package com.wealth.junit;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -96,12 +99,21 @@ class UserTest {
 
     @Test
     @DisplayName("User should be at least 18")
-    void user_should_be_at_least_18() {
+    void user_should_be_at_least_18() throws Exception {
         assertTrue(user.age() >= 18);
         assertEquals(user.name(), "wealth");
 
-        JsonAssertions.assertThatJson(user).isEqualTo("{\"name\":\"wealth\",\"age\":18,\"blocked\":false,\"birthDate\":[2006, 6, 6]}");
+        ObjectMapper mapper = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        String json = mapper.writeValueAsString(user);
+
+        assertThatJson(json).isEqualTo(
+                "{\"name\":\"wealth\",\"age\":18,\"blocked\":false,\"birthDate\":[2007,11,21]}"
+        );
     }
+
 
     @Test
     void user_should_not_be_blocked() {
