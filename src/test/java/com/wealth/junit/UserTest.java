@@ -100,7 +100,7 @@ class UserTest {
         assertTrue(user.age() >= 18);
         assertEquals(user.name(), "wealth");
 
-//        JsonAssertions.assertThatJson(user).isEqualTo("{\"name\":\"wealth\",\"age\":18,\"blocked\":false,\"birthDate\":[2006, 6, 6]}");
+        JsonAssertions.assertThatJson(user).isEqualTo("{\"name\":\"wealth\",\"age\":18,\"blocked\":false,\"birthDate\":[2006, 6, 6]}");
     }
 
     @Test
