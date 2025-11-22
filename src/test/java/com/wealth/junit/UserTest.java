@@ -82,6 +82,7 @@ import net.javacrumbs.jsonunit.assertj.JsonAssertions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.xmlunit.assertj.XmlAssert;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -112,6 +113,10 @@ class UserTest {
         assertThatJson(json).isEqualTo(
                 "{\"name\":\"wealth\",\"age\":18,\"blocked\":false,\"birthDate\":[2007,11,21]}"
         );
+
+        XmlAssert.assertThat("<a><b attr=\"abc\"></b></a>")
+                .nodesByXPath("//a/b/@attr")
+                .exist();
     }
 
 
